@@ -144,7 +144,8 @@ def deleteDuplicate(startdir):
             os.chdir(os.pardir)
 
 if __name__ == "__main__":
-    curPath = sys.argv[1]
-    scandir(curPath)
+    targetPath = sys.argv[1]
+    curPath = os.getcwd();
+    scandir(targetPath)
     os.chdir(curPath)
-    deleteDuplicate(curPath)
+    deleteDuplicate(targetPath)
