@@ -5,10 +5,12 @@
 
 ## 使用方法
 ```sh
-python3 photo_rename.py targetDirectory
+python3 photo_rename.py targetDirectory [-b backupDirectory]
 ```
 
 目前只处理了 Mac，Windows/Linux 系统没测试过
+
+**注意，直接怼移动硬盘的内容进行操作有风险，请加 `-b` 进行内容备份**
 
 ## 效果预览
 Before
