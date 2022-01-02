@@ -11,7 +11,9 @@
 import os
 import time
 import sys
+import shutil
 from subprocess import Popen, PIPE
+import argparse
 
 
 MY_DATE_FORMAT = '%Y-%m-%d_%H%M%S'
@@ -143,8 +145,33 @@ def deleteDuplicate(startdir):
             deleteDuplicate(obj)
             os.chdir(os.pardir)
 
+def _read_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "source",
+        help="specify the path to be renamed",
+    )
+    parser.add_argument(
+        '-b', '--backup',
+        help='specify a path to copy to backup',
+    )
+    return parser.parse_args()
+
+def backup(source, target):
+    if target is None:
+        return
+    print('copy from %s to %s' %(source, target))
+    if os.path.exists(target):
+        # 如果目标路径存在原文件夹的话就先删除
+        shutil.rmtree(target)
+    shutil.copytree(src=source, dst=target)
+    print('backup success')
+
 if __name__ == "__main__":
-    targetPath = sys.argv[1]
+    args = _read_args()
+    backup(args.source, args.backup)
+
+    targetPath = args.source
     curPath = os.getcwd();
     scandir(targetPath)
     os.chdir(curPath)
