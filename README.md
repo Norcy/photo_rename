@@ -4,8 +4,24 @@
 命名规则为 `%Y-%m-%d_%H%M%S`，如 `2020-05-09_14:58:12`；如果有重复，则会在后面添加一个数字区分，如 `2020-05-09_14:58:12_1`
 
 ## 使用方法
+参数说明
+
 ```sh
-python3 photo_rename.py targetDirectory [-b backupDirectory]
+usage: photo_rename.py [-h] [-b BACKUP] source
+
+positional arguments:
+  source                specify the path to be renamed
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -b BACKUP, --backup BACKUP
+                        specify a path to copy to backup
+```
+
+举个例子
+
+```sh
+python3 photo_rename.py test -b ~/Desktop/bakcup
 ```
 
 目前只处理了 Mac，Windows/Linux 系统没测试过
